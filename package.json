@@ -1,0 +1,44 @@
+{
+  "name": "better-auth-workers",
+  "version": "0.1.0",
+  "description": "Better Auth を Cloudflare Workers（+ D1）で固まらせないための 3 点セット: 接続ミューテックス無しの D1 Dialect / AsyncLocalStorage の事前セット / タイムアウト付きの instance 管理",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayashi7752/better-auth-workers.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "scripts",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./seed": {
+      "types": "./dist/seed.d.ts",
+      "import": "./dist/seed.js"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build && git diff --exit-code -- dist"
+  },
+  "peerDependencies": {
+    "kysely": ">=0.27"
+  },
+  "devDependencies": {
+    "@better-auth/core": "^1.7.6",
+    "@types/node": "^26.6.6",
+    "better-call": "^1.4.5",
+    "kysely": "^0.29.6",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.0"
+  }
+}
